@@ -28,7 +28,7 @@ session.headers = {
 html = open("index.html", "r", encoding="utf-8").read()
 
 base_url = "https://platform.censys.io"
-cdn_regex = r"/build/[a-zA-Z0-9\-_/\.]+\.js"
+cdn_regex = r"/build/[a-zA-Z0-9\-_/\.]+"
 module_regex = r"/[a-zA-Z0-9\-_\.]+\.js"
 urls = set()
 done = set()
@@ -53,6 +53,7 @@ while True:
         r = session.get(url)
         attempt += 1
         time.sleep(1)
+    print(url)
     if r.status_code != 200:
         continue
     src = r.content
