@@ -1,6 +1,6 @@
 import glob
 
-for file in glob.glob("build/*.js"):
+for file in glob.glob("build/**/*.js"):
     src = open(file, "r", encoding="utf-8").read()
     before = src
     original = src

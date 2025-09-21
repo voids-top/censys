@@ -1,1 +1,1 @@
-import{a as e}from"/build/_shared/chunk-LCN4BXNE.js";function b(l,i,t,r=10){let n=t&&t!=="/"?t:"",s=n?e(n,r):"",o=`${l} / ${i}`,c=n.length>r?`${o} ${t}`:"",u=`${o} ${t}`,a=`${o} ${s}`;return{fullLabel:u,truncatedLabel:a,tooltipContent:c}}export{b as a};
+import{a as e}from"/censys/build/_shared/chunk-LCN4BXNE.js";function b(l,i,t,r=10){let n=t&&t!=="/"?t:"",s=n?e(n,r):"",o=`${l} / ${i}`,c=n.length>r?`${o} ${t}`:"",u=`${o} ${t}`,a=`${o} ${s}`;return{fullLabel:u,truncatedLabel:a,tooltipContent:c}}export{b as a};

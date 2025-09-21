@@ -1,1 +1,1 @@
-import{a as n}from"/build/_shared/chunk-XJAPXWKX.js";import{d as t}from"/build/_shared/chunk-2QEWK57A.js";var e=t(n(),1),o=(0,e.createContext)(void 0),p=()=>(0,e.useContext)(o);export{o as a,p as b};
+import{a as n}from"/censys/build/_shared/chunk-XJAPXWKX.js";import{d as t}from"/censys/build/_shared/chunk-2QEWK57A.js";var e=t(n(),1),o=(0,e.createContext)(void 0),p=()=>(0,e.useContext)(o);export{o as a,p as b};
