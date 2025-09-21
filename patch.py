@@ -12,5 +12,9 @@ for file in glob.glob("build/**/*.js"):
     if src != original:
         original = src
         print("[2] patched", file)
+    src = src.replace('typeof window>"u"?"http://localhost":window.location.origin);', 'typeof window>"u"?"http://localhost": "https://capi.voids.top");')
+    if src != original:
+        original = src
+        print("[3] patched", file)
     if before != src:
         open(file, "w", encoding="utf-8").write(src)
