@@ -1,0 +1,1 @@
+function w(i,c={}){if(typeof window>"u")return;let o=i.getBoundingClientRect(),t=window.scrollY,n=window.scrollY+window.innerHeight,r=o.top>=t&&o.top<=n,e=!(o.bottom>=t&&o.bottom<=n)&&o.bottom-n<=o.top-t;if(!r||e){let s=e?"end":"start";i.scrollIntoView({...c,block:s})}}export{w as a};

@@ -1,0 +1,1 @@
+var M=new Intl.RelativeTimeFormat(void 0,{numeric:"auto"}),l=1e3,o=60*1e3,a=o*60,i=a*24,f=i*7,r=i*30,_=i*365;function u(c,m){let t=c.getTime()-m.getTime(),n=Math.abs(t),e="seconds",s=t/l;return n>=_?(e="years",s=t/_):n>=r?(e="months",s=t/r):n>=f?(e="weeks",s=t/f):n>=i?(e="days",s=t/i):n>=a?(e="hours",s=t/a):n>=o&&(e="minutes",s=t/o),M.format(Math.round(s),e)}export{u as a};

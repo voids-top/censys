@@ -1,0 +1,1 @@
+var t="No Data",e="Timestamp Updated",a={"Observed at":"Last Observed Time","Last Observed":"Last Entity Change","Last Updated":"Last Entity Change"},s="summaryOverviewContainer";export{t as a,e as b,a as c,s as d};
