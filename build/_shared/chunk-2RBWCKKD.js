@@ -1,0 +1,1 @@
+function o(e){if(e.length<2)return 0;let t=new Date(e[0].datetime);t.setHours(0,0,0,0);let n=new Date(e[e.length-1].datetime);return n.setHours(23,59,59,999),Math.ceil((n.getTime()-t.getTime())/864e5)}export{o as a};

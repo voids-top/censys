@@ -1,0 +1,1 @@
+var o=(e,n)=>n?({matches:a})=>{let t=a?.find(i=>i.id===n||i.id===`./${n}/route`)?.data,r=t?.cert?t.cert.certificate?.parsed?.subject_dn||t.cert.displayName:t?.id||t?.collection?.name;return[{title:r?`${r} - ${e}`:e}]}:()=>[{title:e}];export{o as a};

@@ -29,7 +29,7 @@ html = open("original.html", "r", encoding="utf-8").read()
 
 base_url = "https://platform.censys.io"
 cdn_regex = r"/build/[a-zA-Z0-9\-_/\.]+"
-module_regex = r"/[a-zA-Z0-9\-_\.]+\.js"
+module_regex = r"(/[a-zA-Z0-9/\-_\.]+.(js|css|woff|woff2|ttf|json))"
 urls = set()
 done = set()
 
@@ -44,18 +44,22 @@ while True:
         continue
     if not "/build" in url:
         continue
-    r = session.get(url)
+    if "/_portal/" in url:
+        continue
+    url = url.replace("https://platform.censys.io//platform.censys.io/", "https://platform.censys.io/")
+    r = session.get(url, allow_redirects=False)
     attempt = 0
     while r.status_code == 403:
         if attempt > 10:
-            print(403, url)
+            print("[!]", url)
             break
-        r = session.get(url)
+        r = session.get(url, allow_redirects=False)
         attempt += 1
         time.sleep(1)
-    print(url)
     if r.status_code != 200:
+        done.add(url)
         continue
+    print(url)
     src = r.content
     path = url.split(base_url)[1][1:].split("/")
     for n in range(1, len(path)):
@@ -63,9 +67,33 @@ while True:
             os.mkdir("/".join(path[0:n]))
         except:
             pass
-    open(url.split(base_url)[1][1:], "wb").write(src.replace(b"/build/", b"/censys/build/"))
+    open(url.split(base_url)[1][1:], "wb").write(src.replace(b"/build/", b"/censys/build/").replace(b"/locales/", b"/censys/locales/"))
+    try:
+        src.decode("utf-8")
+    except:
+        continue
     for module in re.findall(module_regex, src.decode("utf-8")):
+        try:
+            module = module[0]
+        except:
+            continue
         module = base_url + module
         if not module in done:
             urls.add(module)
     done.add(url)
+
+for lang in ["en", "ja", "de", "es", "fr", "it", "pt", "ru", "zh"]:
+    url = f"https://platform.censys.io/locales/{lang}/translation.json"
+    r = session.get(url)
+    if r.status_code != 200:
+        continue
+    print(url)
+    try:
+        os.mkdir(f"locales")
+    except:
+        pass
+    try:
+        os.mkdir(f"locales/{lang}")
+    except:
+        pass
+    open(f"locales/{lang}/translation.json", "wb").write(r.content)
