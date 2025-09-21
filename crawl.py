@@ -28,8 +28,8 @@ session.headers = {
 html = open("original.html", "r", encoding="utf-8").read()
 
 base_url = "https://platform.censys.io"
-cdn_regex = r"/build/[a-zA-Z0-9\-_/\.]+"
-module_regex = r"(/[a-zA-Z0-9/\-_\.]+.(js|css|woff|woff2|ttf|json))"
+cdn_regex = r"/build/[$a-zA-Z0-9\-_/\.]+"
+module_regex = r"(/[$a-zA-Z0-9/\-_\.]+.(js|css|woff2|woff|ttf|json))"
 urls = set()
 done = set()
 
