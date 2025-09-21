@@ -1,6 +1,6 @@
 import glob
 
-for file in glob.glob("build/**/*.js"):
+for file in glob.glob("**/*.js"):
     src = open(file, "r", encoding="utf-8").read()
     before = src
     original = src
@@ -12,7 +12,7 @@ for file in glob.glob("build/**/*.js"):
     if src != original:
         original = src
         print("[2] patched", file)
-    src = src.replace('typeof window>"u"?"http://localhost":window.location.origin);', 'typeof window>"u"?"http://localhost": "https://capi.voids.top");')
+    src = src.replace('let t=await be(i,e);', 'let t=await be(i.replaceAll("https://voids.top/", "https://capi.voids.top/"),e);')
     if src != original:
         original = src
         print("[3] patched", file)
