@@ -56,6 +56,10 @@ for folder in ["build/*.js", "build/**/*.js"]:
         src = src.replace('throw Error(h(418));', '{}')
         if src != original:
             original = src
-            print("[13] patched", file)
+            print("[14] patched", file)
+        src = src.replace('throw ka(),Error(h(418));', '{}')
+        if src != original:
+            original = src
+            print("[15] patched", file)
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
