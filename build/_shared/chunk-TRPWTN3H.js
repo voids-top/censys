@@ -1,0 +1,1 @@
+var s=r=>{let e=r.split("/");return e[e.length-1]},t=r=>{let e=r.split("/");return r.includes("/webs/")?e.slice(-2).join(":"):(r.includes("/certificates/"),e[e.length-1])},i=r=>{let e=r.split("/");return e[e.length-1]};export{s as a,t as b,i as c};

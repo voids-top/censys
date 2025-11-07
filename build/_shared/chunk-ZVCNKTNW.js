@@ -1,0 +1,1 @@
+function r(t){if(t.length<2)return 0;let e=new Date(t[0].datetime);e.setHours(0,0,0,0);let n=new Date(t[t.length-1].datetime);return n.setHours(23,59,59,999),Math.ceil((n.getTime()-e.getTime())/864e5)}function o(t){return t.currentUrl.pathname.endsWith("host")||t.nextUrl.pathname.endsWith("host")}export{r as a,o as b};

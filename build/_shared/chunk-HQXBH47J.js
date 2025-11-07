@@ -1,0 +1,1 @@
+var g=Symbol.for("RawDataMapEntry");var n=t=>!!t&&typeof t=="object"&&t instanceof Map,r=(t,e)=>typeof e=="bigint"?e.toString():e,i=(t,e)=>e instanceof Temporal.Instant?e.toString():e,o=(t,e)=>n(e)?Object.fromEntries(e.entries()):e,a=(t,e)=>i(t,r(t,o(t,e)));function y(t){return JSON.parse(JSON.stringify(t,a))}export{r as a,a as b,y as c};
