@@ -85,5 +85,9 @@ for folder in ["build/*.js", "build/**/*.js"]:
         if src != original:
             original = src
             print("[18] patched", file)
+        src = src.replace('m&&(p=v(e,s,typeof m=="boolean"?"and":m)),r.set("q",p)}', 'm&&(p=v(((new URL(window.location.href)).searchParams.get("q") || "").trim(),s,typeof m=="boolean"?"and":m)),r.set("q",p)}')
+        if src != original:
+            original = src
+            print("[19] patched", file)
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
