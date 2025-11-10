@@ -1,5 +1,13 @@
 import glob
 
+host_replacer = """
+if (typeof(to_replace_variable) == "string") {
+    to_replace_variable = to_replace_variable.replaceAll("https://voids.top/", "https://capi.voids.top/")
+} else if (typeof(to_replace_variable) == "object") {
+    to_replace_variable = new URL(t.href.replaceAll("https://voids.top/", "https://capi.voids.top/"))
+}
+""".strip().replace("\n", ";").replace("    ", "").replace(";};", "}; ").replace(";}", "}").replace("{;", "{")
+
 for folder in ["build/*.js", "build/**/*.js"]:
     for file in glob.glob(folder):
         src = open(file, "r", encoding="utf-8").read()
@@ -13,7 +21,7 @@ for folder in ["build/*.js", "build/**/*.js"]:
         if src != original:
             original = src
             print("[2] patched", file)
-        src = src.replace('let t=await be(i,e);', 'let t=await be(i.replaceAll("https://voids.top/", "https://capi.voids.top/"),e);')
+        src = src.replace('let t=await be(i,e);', host_replacer.replace("to_replace_variable", "i") + 'let t = await be(i,e);')
         if src != original:
             original = src
             print("[3] patched", file)
