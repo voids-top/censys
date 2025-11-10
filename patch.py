@@ -4,7 +4,7 @@ host_replacer = """
 if (typeof(to_replace_variable) == "string") {
     to_replace_variable = to_replace_variable.replaceAll("https://voids.top/", "https://capi.voids.top/")
 } else if (typeof(to_replace_variable) == "object") {
-    to_replace_variable = new URL(t.href.replaceAll("https://voids.top/", "https://capi.voids.top/"))
+    to_replace_variable = new URL(to_replace_variable.href.replaceAll("https://voids.top/", "https://capi.voids.top/"))
 }
 """.strip().replace("\n", ";").replace("    ", "").replace(";};", "}; ").replace(";}", "}").replace("{;", "{")
 
