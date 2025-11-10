@@ -77,5 +77,13 @@ for folder in ["build/*.js", "build/**/*.js"]:
         if src != original:
             original = src
             print("[16] patched", file)
+        src = src.replace('let m=[["q",t],["data_sets",e.join(",")]];', 'let m=[["q",((new URL(window.location.href)).searchParams.get("q") || "").trim(),["data_sets",e.join(",")]];')
+        if src != original:
+            original = src
+            print("[17] patched", file)
+        src = src.replace('defaultSuggestions:u,contextSuggestions:S,initialValue:e,', 'defaultSuggestions:u,contextSuggestions:S,initialValue:e||((new URL(window.location.href)).searchParams.get("q") || "").trim(),')
+        if src != original:
+            original = src
+            print("[18] patched", file)
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
