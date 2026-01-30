@@ -1,1 +1,0 @@
-import{a as i}from"/censys/build/_shared/chunk-EZHABQF2.js";import{c as e}from"/censys/build/_shared/chunk-XJAPXWKX.js";import{d as t}from"/censys/build/_shared/chunk-2QEWK57A.js";var o=t(e(),1);function c({fingerprint:r}){let n=`${r.slice(0,8)}...${r.slice(-8)}`;return(0,o.jsx)(i,{href:`/certificates/${r}`,title:r,breakWord:!0,children:n})}export{c as a};

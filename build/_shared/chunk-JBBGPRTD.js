@@ -1,1 +1,0 @@
-var f=Symbol.for("RawDataMapEntry");var n=e=>!!e&&typeof e=="object"&&e instanceof Map,r=(e,t)=>typeof t=="bigint"?t.toString():t,i=(e,t)=>n(t)?Object.fromEntries(t.entries()):t,o=(e,t)=>r(e,i(e,t));function g(e){return JSON.parse(JSON.stringify(e,o))}export{r as a,o as b,g as c};

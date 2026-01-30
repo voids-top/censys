@@ -1,0 +1,1 @@
+import{Ua as t,Va as a,Wa as p,y as o}from"/censys/build/_shared/chunk-DN2SN5ZC.js";import{b as i}from"/censys/build/_shared/chunk-ZST4CTCB.js";import{e}from"/censys/build/_shared/chunk-2TWE7TSA.js";var r=e(i(),1);function n({size:g=t.SMALL,children:m}){return(0,r.jsx)(p,{size:g,variant:a.GOLD,contentLeft:(0,r.jsx)(o,{name:"price-tag-3",mode:"line"}),children:m})}export{n as a};

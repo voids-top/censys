@@ -1,1 +1,0 @@
-import{a as o}from"/censys/build/_shared/chunk-WK35ORSL.js";function i(r){if(!r.product)return null;let t=r.vendor.trim(),e=r.product.trim(),n=r.version.trim();return[t,e!==t?e:"",n].filter(o).join(" ").replaceAll("_"," ").replaceAll(/\b\w/g,l=>l.toUpperCase())}export{i as a};

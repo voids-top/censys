@@ -1,0 +1,1 @@
+import{a as o}from"/censys/build/_shared/chunk-MOHCJWAV.js";import{e as i}from"/censys/build/_shared/chunk-2TWE7TSA.js";var e=i(o(),1);function m(n){let[r,s]=(0,e.useState)(!1);return(0,e.useEffect)(()=>{let t=window.matchMedia(n);s(t.matches);let a=c=>{s(c.matches)};return t.addEventListener("change",a),()=>{t.removeEventListener("change",a)}},[n]),r}export{m as a};
