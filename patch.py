@@ -105,8 +105,15 @@ for folder in ["build/*.js", "build/**/*.js"]:
             print("[17] patched", file)
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
+        src = src.replace('});return e?(0,le.jsx)("li",{className:j(xe.item,', '});if(true){return null};return e?(0,le.jsx)("li",{className:j(xe.item,')
+        if src != original:
+            original = src
+            check.append(18)
+            print("[18] patched", file)
+        if before != src:
+            open(file, "w", encoding="utf-8").write(src)
 
 print()
-for n in range(17):
+for n in range(18):
     if not n+1 in check:
         print(f"[!] Patch {n+1} is not applied")
