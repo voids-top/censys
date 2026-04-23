@@ -2,9 +2,9 @@ import glob
 
 host_replacer = """
 if (typeof(to_replace_variable) == "string") {
-    to_replace_variable = to_replace_variable.replaceAll("https://voids.top/", "https://capi.voids.top/")
+    to_replace_variable = to_replace_variable.replaceAll("https://censys.voids.top/", "https://capi.voids.top/")
 } else if (typeof(to_replace_variable) == "object") {
-    to_replace_variable = new URL(to_replace_variable.href.replaceAll("https://voids.top/", "https://capi.voids.top/"))
+    to_replace_variable = new URL(to_replace_variable.href.replaceAll("https://censys.voids.top/", "https://capi.voids.top/"))
 }
 """.strip().replace("\n", ";").replace("    ", "").replace(";};", "}; ").replace(";}", "}").replace("{;", "{")
 
@@ -26,7 +26,7 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             original = src
             check.append(2)
             print("[2] patched", file)
-        src = src.replace('let t=await be(i,e);', host_replacer.replace("to_replace_variable", "i") + 'let t = await be(i,e);')
+        src = src.replace('const a = await l(n, i);', host_replacer.replace("to_replace_variable", "n") + 'const a = await l(n, i);')
         if src != original:
             original = src
             check.append(3)
@@ -77,7 +77,6 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             original = src
             check.append(12)
             print("[12] patched", file)
-        """
         src = src.replace('let g=[["q",r],["data_sets",e.join(",")]];', 'let g=[["q",((new URL(window.location.href)).searchParams.get("q") || "").trim()],["data_sets",e.join(",")]];')
         if src != original:
             original = src
@@ -116,6 +115,7 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             print("[18] patched", file)
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
+        """
 
 print()
 for n in range(18):

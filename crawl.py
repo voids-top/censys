@@ -29,7 +29,7 @@ html = open("original.html", "r", encoding="utf-8").read()
 
 base_url = "https://platform.censys.io"
 cdn_regex = r"/assets/[$a-zA-Z0-9\-_/\.]+"
-module_regex = r"(/[$a-zA-Z0-9/\-_\.]+.(js|css|woff2|woff|ttf|json))"
+module_regex = r"(/[$a-zA-Z0-9/\-_\.]+.(js|css|woff2|woff|ttf|json|svg))"
 urls = set()
 done = set()
 
@@ -47,6 +47,10 @@ while True:
     if "/_portal/" in url:
         continue
     url = url.replace("https://platform.censys.io//platform.censys.io/", "https://platform.censys.io/")
+    print(url)
+    path = url.split(base_url)[1][1:]
+    if os.path.isfile(path):
+        continue
     r = session.get(url, allow_redirects=False)
     attempt = 0
     while r.status_code == 403:
@@ -59,12 +63,10 @@ while True:
     if r.status_code != 200:
         done.add(url)
         continue
-    print(url)
     src = r.content
-    path = url.split(base_url)[1][1:].split("/")
-    for n in range(1, len(path)):
+    for n in range(1, len(path.split("/"))):
         try:
-            os.mkdir("/".join(path[0:n]))
+            os.mkdir("/".join(path.split("/")[0:n]))
         except:
             pass
     open(url.split(base_url)[1][1:], "wb").write(src)
