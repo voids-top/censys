@@ -9,16 +9,18 @@ if (typeof(to_replace_variable) == "string") {
 """.strip().replace("\n", ";").replace("    ", "").replace(";};", "}; ").replace(";}", "}").replace("{;", "{")
 
 check = []
-for folder in ["build/*.js", "build/**/*.js"]:
+for folder in ["assets/*.js", "assets/**/*.js"]:
     for file in glob.glob(folder):
         src = open(file, "r", encoding="utf-8").read()
         before = src
         original = src
+        """
         src = src.replace('"/search', '"/censys')
         if src != original:
             original = src
             check.append(1)
             print("[1] patched", file)
+        """
         src = src.replace('"https://platform.censys.io"', '"https://capi.voids.top"')
         if src != original:
             original = src
@@ -29,6 +31,7 @@ for folder in ["build/*.js", "build/**/*.js"]:
             original = src
             check.append(3)
             print("[3] patched", file)
+        """
         src = src.replace('`/search', '`/censys')
         if src != original:
             original = src
@@ -74,6 +77,7 @@ for folder in ["build/*.js", "build/**/*.js"]:
             original = src
             check.append(12)
             print("[12] patched", file)
+        """
         src = src.replace('let g=[["q",r],["data_sets",e.join(",")]];', 'let g=[["q",((new URL(window.location.href)).searchParams.get("q") || "").trim()],["data_sets",e.join(",")]];')
         if src != original:
             original = src

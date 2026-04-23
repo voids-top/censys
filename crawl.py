@@ -28,7 +28,7 @@ session.headers = {
 html = open("original.html", "r", encoding="utf-8").read()
 
 base_url = "https://platform.censys.io"
-cdn_regex = r"/build/[$a-zA-Z0-9\-_/\.]+"
+cdn_regex = r"/assets/[$a-zA-Z0-9\-_/\.]+"
 module_regex = r"(/[$a-zA-Z0-9/\-_\.]+.(js|css|woff2|woff|ttf|json))"
 urls = set()
 done = set()
@@ -42,7 +42,7 @@ while True:
     url = urls.pop()
     if url in done:
         continue
-    if not "/build" in url:
+    if not "/assets" in url:
         continue
     if "/_portal/" in url:
         continue
@@ -67,7 +67,7 @@ while True:
             os.mkdir("/".join(path[0:n]))
         except:
             pass
-    open(url.split(base_url)[1][1:], "wb").write(src.replace(b"/build/", b"/censys/build/").replace(b"/locales/", b"/censys/locales/"))
+    open(url.split(base_url)[1][1:], "wb").write(src)
     try:
         src.decode("utf-8")
     except:
