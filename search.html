@@ -2510,7 +2510,7 @@
                             "markedForDeletion": false
                         },
                         "routes/search": {
-                            "q": ""
+                            "q": (new URL(window.location.href)).searchParams.get("q") || ""
                         },
                         "routes/search._index": {
                             "capabilities": {

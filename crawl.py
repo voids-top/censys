@@ -29,7 +29,7 @@ session.headers = {
 html = ""
 for file in glob.glob("*.html"):
     _html = open(file, "r", encoding="utf-8").read()
-    open(file, "w", encoding="utf-8").write(_html.replace("https://platform.censys.io", "https://capi.voids.top"))
+    open(file, "w", encoding="utf-8").write(_html.replace("https://platform.censys.io", "https://capi.voids.top").replace('"q": ""', '"q": (new URL(window.location.href)).searchParams.get("q") || ""'))
     html += _html
 
 
