@@ -26,11 +26,12 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             original = src
             check.append(2)
             print("[2] patched", file)
-        src = src.replace('const a = await l(n, i);', host_replacer.replace("to_replace_variable", "n") + 'const a = await l(n, i);')
-        if src != original:
-            original = src
-            check.append(3)
-            print("[3] patched", file)
+        if not '.replaceAll("https://censys.voids.top/", "https://capi.voids.top/")' in src:
+            src = src.replace('const a=await l(n,i);', host_replacer.replace("to_replace_variable", "n") + 'const a=await l(n,i);')
+            if src != original:
+                original = src
+                check.append(3)
+                print("[3] patched", file)
         """
         src = src.replace('`/search', '`/censys')
         if src != original:
@@ -113,9 +114,9 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             original = src
             check.append(18)
             print("[18] patched", file)
+        """
         if before != src:
             open(file, "w", encoding="utf-8").write(src)
-        """
 
 print()
 for n in range(18):
