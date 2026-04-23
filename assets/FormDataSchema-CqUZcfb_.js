@@ -7,7 +7,7 @@ import{W as s,A as E}from"./proto-CpX1Bo0l.js";import{_ as c,c as O,s as l,h as 
   "query": "{{.CollectionQuery}}",
   "asset_id": "{{.AssetId}}",
   "asset_type": "{{.AssetType}}",
-  "url": "https://platform.censys.io/collections/{{.CollectionId}}?org={{.OrganizationId}}",
+  "url": "https://capi.voids.top/collections/{{.CollectionId}}?org={{.OrganizationId}}",
   "evidence": "{{.AssetType}} {{.AssetId}} was {{.EventVerb}} to the collection on {{.Timestamp}} because it matched the collection query."
 }`,TEAMS:`{
   "@type": "MessageCard",
@@ -39,7 +39,7 @@ import{W as s,A as E}from"./proto-CpX1Bo0l.js";import{_ as c,c as O,s as l,h as 
       "targets": [
         {
           "os": "default",
-          "uri": "https://platform.censys.io/collections/{{.CollectionId}}?org={{.OrganizationId}}"
+          "uri": "https://capi.voids.top/collections/{{.CollectionId}}?org={{.OrganizationId}}"
         }
       ]
     }

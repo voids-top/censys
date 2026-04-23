@@ -21,7 +21,7 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             check.append(1)
             print("[1] patched", file)
         """
-        src = src.replace('"https://platform.censys.io"', '"https://capi.voids.top"')
+        src = src.replace('https://platform.censys.io', 'https://capi.voids.top')
         if src != original:
             original = src
             check.append(2)
