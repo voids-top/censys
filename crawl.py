@@ -27,6 +27,9 @@ session.headers = {
     # 'cookie': 'cf_clearance=0WlVdpr1TTNzDK6kPgoU94jjQE1aW8Ss94gcRxU91vY-1758458344-1.2.1.1-aA3sV2IMAPbhI8WWFvBEklnwI9r49Km.DOPckM.TwDN6sBs2HeuofJcb.sgnUan9OANP77BBUpFmtpMAbmQVoXkfzdTaAh.KgDq3aAFE2FgFqX.n3IONiNbddMVzbvd7bh2KfiMel7ne1XCAR7mtAUOrMZX0KHbENnAcUNFlRvDdATa_dt3eFooQEc7XORMI77g5b7nFdiZTofih8znFcAa3MG3EzIoOXClfm0xx.Ug; auth_v1=MTc1ODQ1ODM1M3xnaWRJNVJ2Z09URVlXU0J2ZTBHeFZrN1BqWVF0WmtmZUNFaXdEdVZlMVkxN2Foam1mS2E5QjJvV1pVR3ltaUpIRWZpSlQzbUhtY1ZRS1hCQVBrMUtwMzM0RmpJWUdtc1Y2WFR5TkZRaDVSbktOYmJ1bUN1SzZtZjZpT1JTOFFSZzNvZWhHQjM2WlRlUXYtc3V3RTBXUExMMzNRd3FwTE1XNFBkUjg2MUlKTmRmQkdTcVNyOWdLVXM1anZWdExDZEZTYUJ2SlBvbTZ1V1hOTkFnV1ctVlM0WjRzaTFMYmVtdWhoUk9rZWcyMWFZWHZkWmEwRDU3NnJDTkEtRnFJUUxsTGpXOTREcUw1YjQxdW9GbTJ2dz18yW9xvAocwAzgtHNESxKjOvaBVK3enpNCDYVy1S07z7U=; __cf_bm=lzng0Z4G6p0YahjESH1rGAP_BcBvvpw_xaZeC7LFq_c-1758458354-1.0.1.1-AuCMJLmKJDzGUCel5LQaH6T0.tXfZNYRnZqGxnwr1EGxQaKv34ZyTsYAoV2I2VIcqlfg76BBJVWpanKjmrICC9YmdBQzmt7GVwfUj4jHNKc; csrf=InBvOWNxelM3UXQ3cGl0SW1XNGtfNEZkWWViLW0xbXNwT3VLNW1qUnp0eEkuVkJLYW9kZnJJZUtUTmhGMkx1OVktaUNfSDEtb1U0V0c0OFpKWTdvb3M4NCI%3D.mgywVSiBJFF5k87bXwFlPH9sBcWWgM9w9edDanaXn68',
 }
 html = ""
+open("home.html", "w", encoding="utf_8").write(session.get("https://platform.censys.io/home").text)
+open("404.html", "w", encoding="utf_8").write(session.get("https://platform.censys.io/home").text)
+open("search.html", "w", encoding="utf_8").write(session.get("https://platform.censys.io/search").text)
 for file in glob.glob("*.html"):
     _html = open(file, "r", encoding="utf-8").read()
     open(file, "w", encoding="utf-8").write(_html.replace("https://platform.censys.io", "https://capi.voids.top").replace('"q": ""', '"q": (new URL(window.location.href)).searchParams.get("q") || ""'))
@@ -53,9 +56,9 @@ while True:
     if "/_portal/" in url:
         continue
     url = url.replace("https://platform.censys.io//platform.censys.io/", "https://platform.censys.io/")
-    print(url)
     path = url.split(base_url)[1][1:]
     if os.path.isfile(path):
+        print("skip", url)
         continue
     r = session.get(url, allow_redirects=False)
     attempt = 0
@@ -67,8 +70,10 @@ while True:
         attempt += 1
         time.sleep(1)
     if r.status_code != 200:
+        print(r.status_code, url)
         done.add(url)
         continue
+    print(url)
     src = r.content
     for n in range(1, len(path.split("/"))):
         try:

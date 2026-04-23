@@ -2,9 +2,9 @@ import glob
 
 host_replacer = """
 if (typeof(to_replace_variable) == "string") {
-    to_replace_variable = to_replace_variable.replaceAll("https://censys.voids.top/", "https://capi.voids.top/")
+    to_replace_variable = to_replace_variable.replaceAll("https://censys.voids.top/", "https://capi.voids.top/censys/")
 } else if (typeof(to_replace_variable) == "object") {
-    to_replace_variable = new URL(to_replace_variable.href.replaceAll("https://censys.voids.top/", "https://capi.voids.top/"))
+    to_replace_variable = new URL(to_replace_variable.href.replaceAll("https://censys.voids.top/", "https://capi.voids.top/censys/"))
 }
 """.strip().replace("\n", ";").replace("    ", "").replace(";};", "}; ").replace(";}", "}").replace("{;", "{")
 
@@ -26,12 +26,14 @@ for folder in ["assets/*.js", "assets/**/*.js"]:
             original = src
             check.append(2)
             print("[2] patched", file)
-        if not '.replaceAll("https://censys.voids.top/", "https://capi.voids.top/")' in src:
+        if not '.replaceAll("https://censys.voids.top/", "https://capi.voids.top/censys/")' in src:
             src = src.replace('const a=await l(n,i);', host_replacer.replace("to_replace_variable", "n") + 'const a=await l(n,i);')
             if src != original:
                 original = src
                 check.append(3)
                 print("[3] patched", file)
+        else:
+            print("[3] already")
         """
         src = src.replace('`/search', '`/censys')
         if src != original:
