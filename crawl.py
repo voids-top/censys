@@ -32,7 +32,7 @@ open("404.html", "w", encoding="utf_8").write(session.get("https://platform.cens
 open("search.html", "w", encoding="utf_8").write(session.get("https://platform.censys.io/search").text)
 for file in glob.glob("*.html"):
     _html = open(file, "r", encoding="utf-8").read()
-    open(file, "w", encoding="utf-8").write(_html.replace("https://platform.censys.io", "https://capi.voids.top").replace('"q": ""', '"q": (new URL(window.location.href)).searchParams.get("q") || ""'))
+    open(file, "w", encoding="utf-8").write(_html.replace("https://platform.censys.io", "https://capi.voids.top").replace('"q":""', '"q":(new URL(window.location.href)).searchParams.get("q") || ""'))
     html += _html
 
 
